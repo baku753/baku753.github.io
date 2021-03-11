@@ -1,0 +1,5 @@
+/about /1 200
+/feed /feed.xml
+/dummy/:xxx /:xxx
+/sample/*  /:splat
+/* /notfound 404

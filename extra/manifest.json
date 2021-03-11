@@ -1,0 +1,16 @@
+{
+    "name": "タッタの日記",
+    "short_name": "タッタの日記",
+    "description": "今日考えたこと",
+    "icons": [
+        {
+            "src": "{{-site.icon-}}",
+            "sizes": "192x192",
+            "type": "image/jpg"
+        }
+    ],
+    "start_url": "/",
+    "display": "fullscreen",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+}

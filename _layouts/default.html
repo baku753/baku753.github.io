@@ -1,0 +1,41 @@
+{%- comment -%}先頭行から見出しを抽出してタイトルに使用{%- endcomment -%}
+{%- assign h1 = page.content | markdownify | split: "</h1>" | first | strip_html -%}
+
+<!DOCTYPE html>
+<html lang="ja">
+{%- include head.html -%}
+<body class="markdown-body">
+
+{{ content }}
+
+<footer>
+{%- if page.url == "/index" or page.url == "/en" -%}
+  <span class="copyright">&copy;</span> {{ site.copyright }} {{ site.version }}
+
+{%- elsif page.title contains ".en" -%}
+  <ul class="breadcrumb">
+    <li><a href="{{- site.en.url -}}"><span>{{-site.en.title-}}</span></a></li>
+    <li>{{- page.date | date: "%Y.%-m.%-d" -}}</li>
+  </ul>
+
+{%- elsif page.date -%}
+  <ul class="breadcrumb">
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{- site.url -}}" itemprop="url"><span itemprop="title">{{-site.title-}}</span></a></li>
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><time datetime="{{-page.date | date: "%Y-%m-%d"-}}">{{- page.date | date: "%Y.%-m.%-d" -}}</time><span itemprop="title" style="display:none;">{{-page.title-}}</span></li>
+  </ul>
+
+{%- elsif h1 and page.url != "/404" -%}
+  <ul class="breadcrumb">
+    <li><a href="{{- site.url -}}"><span>{{-site.title-}}</span></a></li>
+    <li>{{- h1 -}}</li>
+  </ul>
+
+{%- else -%}
+  <ul class="breadcrumb">
+    <li><a href="{{- site.url -}}"><span>{{-site.title-}}</span></a></li>
+  </ul>
+{%- endif -%}
+</footer>
+
+</body>
+</html>
